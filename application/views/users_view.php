@@ -12,7 +12,7 @@
     </div>
 
     <div class="text-right">
-                <a  href="<?php echo site_url("newuser/index"); ?>" ><button type="button" id="add_button" class="btn btn-info">เพิ่มผู้ใช้งาน</button></a>
+                <a  href="<?php echo site_url("newuser_api/index"); ?>" ><button type="button" id="add_button" class="btn btn-info">เพิ่มผู้ใช้งาน</button></a>
                   </div>
                   <span id="success_message"></span>
     <div id="page-inner">

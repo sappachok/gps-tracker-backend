@@ -107,7 +107,7 @@
         $(document).on('submit', '#user_form', function(event) {
             event.preventDefault();
             $.ajax({
-                url: "<?php echo base_url() . 'test_api/action' ?>",
+                url: "<?php echo base_url() . 'newuser_api/action' ?>",
                 method: "POST",
                 data: $(this).serialize(),
                 dataType: "json",
