@@ -26,7 +26,7 @@ class users_api extends CI_Controller
 
 			if($data_action == "Delete")
 			{
-				$api_url = "http://localhost/testing/api/delete";
+				$api_url = "http://localhost/gps-tracker-backend/api/delete";
 
 				$form_data = array(
 					'id'		=>	$this->input->post('user_id')
@@ -53,7 +53,7 @@ class users_api extends CI_Controller
 
 			if($data_action == "Edit")
 			{
-				$api_url = "http://localhost/testing/api/update";
+				$api_url = "http://localhost/gps-tracker-backend/api/update";
 
 				$form_data = array(
 					'fname'		=>	$this->input->post('fname'),
@@ -87,7 +87,7 @@ class users_api extends CI_Controller
 
 			if($data_action == "fetch_single")
 			{
-				$api_url = "http://localhost/testing/api/fetch_single";
+				$api_url = "http://localhost/gps-tracker-backend/api/fetch_single";
 
 				$form_data = array(
 					'id'		=>	$this->input->post('user_id')
@@ -116,7 +116,7 @@ class users_api extends CI_Controller
 
 			if($data_action == "Insert")
 			{
-				$api_url = "http://localhost/testing/api/insert";
+				$api_url = "http://localhost/gps-tracker-backend/api/insert";
 			
 
 				$form_data = array(
@@ -151,7 +151,7 @@ class users_api extends CI_Controller
 
 			if($data_action == "fetch_all")
 			{
-				$api_url = "http://localhost/testing/api";
+				$api_url = "http://localhost/gps-tracker-backend/api";
 
 				$client = curl_init($api_url);
 
