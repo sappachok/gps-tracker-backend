@@ -13,10 +13,10 @@
     <!-- Morris Chart Styles-->
     <link href="<?php echo base_url(); ?>js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- Custom Styles-->
-    <link href="<?php echo base_url(); ?>css/custom-styles.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>css/custom-styles.css" rel="stylesheet" /> 
     <!-- Google Fonts-->
     
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url(); ?>js/Lightweight-Chart/cssCharts.css">
     <link href="<?php echo base_url(); ?>js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />

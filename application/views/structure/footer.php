@@ -1,7 +1,7 @@
 </div>
 
 <!-- Custom Js -->
-<script src="assets/js/custom-scripts.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/custom-scripts.js"></script>
 <!-- /. WRAPPER  -->
 <!-- JS Scripts-->
 <!-- jQuery Js -->

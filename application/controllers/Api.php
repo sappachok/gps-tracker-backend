@@ -81,8 +81,8 @@ class Api extends CI_Controller {
 	{
 		$this->form_validation->set_rules('fname', 'First Name', 'required');
 		$this->form_validation->set_rules('lname', 'Last Name', 'required');
-		$this->form_validation->set_rules('email', 'Email', );
-		$this->form_validation->set_rules('telno', 'Telephone Number', );
+		$this->form_validation->set_rules('email', 'Email', '');
+		$this->form_validation->set_rules('telno', 'Telephone Number', '');
 		
 		if($this->form_validation->run())
 		{	
