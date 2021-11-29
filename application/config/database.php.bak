@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'mysql', 
-	'username' => 'gps-tracker',
-	'password' => 'TaVU7UBrLSmtz7Zm',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'gps-tracker',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
