@@ -4,14 +4,18 @@
         <ul class="nav" id="main-menu">
 
             <li >
-                <a class="<?php if ($activebar == "Dashboard"){echo "active-menu";} ?>" href="<?php echo site_url("Welcome/index"); ?>"><i class="fa fa-dashboard"></i> Dashboard</a>
+                <a class="<?php if ($activebar == "Dashboard"){echo "active-menu";} ?>" href="<?php echo site_url("Dashboard"); ?>"><i class="fa fa-dashboard"></i> Dashboard</a>
             </li>
             <li>
-                <a class="<?php if ($activebar == "บัญชีผู้ใช้งาน"){echo "active-menu";} ?>" href="<?php echo site_url("users_api"); ?>"><i class="fa fa-users"></i> ผู้ใช้งาน</a>
+                <a class="<?php if ($activebar == "บัญชีผู้ใช้งาน"){echo "active-menu";} ?>" href="<?php echo site_url("users_api"); ?>"><i class="fa fa-users"></i> บัญชีผู้ใช้งาน</a>
             </li>
-            <li>  
-                <a href="chart.html"><i class="fa fa-map-marker-alt"></i> พิกัดผู้ใช้งาน</a>
+            <li>
+                <a class="<?php if ($activebar == "พิกัดผู้ใช้งาน"){echo "active-menu";} ?>" href="<?php echo site_url("users_database"); ?>"><i class="fa fa-map-marker-alt"></i> พิกัดผู้ใช้งาน</a>
             </li>
+            <li>
+                <a class="<?php if ($activebar == "พิกัดผู้ใช้งาน Google map"){echo "active-menu";} ?>" href="<?php echo site_url("GPS"); ?>"><i class="fa fa-bar-chart-o"></i> พิกัดผู้ใช้งาน Google map</a>
+            </li>
+		
             
 <!--
             <li>

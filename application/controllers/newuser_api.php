@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class newuser_api extends CI_Controller
+class Newuser_api extends CI_Controller
 {
 
 	function index()
@@ -15,7 +15,6 @@ class newuser_api extends CI_Controller
 		$this->load->view('newuser', $data_top);
 		$this->load->view('structure/footer');
 
-		//http://localhost/test/users_api
 	}
 
 	function action()
@@ -25,7 +24,7 @@ class newuser_api extends CI_Controller
 			
 
 			if ($data_action == "Insert") {
-				$api_url = "http://localhost/gps-tracker-backend/api/insert";
+				$api_url = site_url("api/insert");
 
 
 				$form_data = array(

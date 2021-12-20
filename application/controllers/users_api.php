@@ -1,13 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class users_api extends CI_Controller
+class Users_api extends CI_Controller
 {
 
 	function index()
 	{
 		$data_top = array('activebar' => 'บัญชีผู้ใช้งาน');
-
+		$this->checklogin();
+		
 		$this->load->helper('url');
 		$this->load->view('structure/top');
 		$this->load->view('structure/nav-top');
@@ -26,7 +27,7 @@ class users_api extends CI_Controller
 
 			if($data_action == "Delete")
 			{
-				$api_url = "http://localhost/gps-tracker-backend/api/delete";
+				$api_url = site_url("api/delete");
 
 				$form_data = array(
 					'id'		=>	$this->input->post('user_id')
@@ -53,14 +54,15 @@ class users_api extends CI_Controller
 
 			if($data_action == "Edit")
 			{
-				$api_url = "http://localhost/gps-tracker-backend/api/update";
+				$api_url = site_url("api/update");
 
 				$form_data = array(
 					'fname'		=>	$this->input->post('fname'),
 					'lname'			=>	$this->input->post('lname'),
 					'email'		=>	$this->input->post('email'),
 					'telno'			=>	$this->input->post('telno'),
-					'id'				=>	$this->input->post('user_id')
+					'id'				=>	$this->input->post('user_id'),
+					'pwd'				=>	$this->input->post('pwd')
 				);
 
 				$client = curl_init($api_url);
@@ -87,7 +89,7 @@ class users_api extends CI_Controller
 
 			if($data_action == "fetch_single")
 			{
-				$api_url = "http://localhost/gps-tracker-backend/api/fetch_single";
+				$api_url = site_url("api/fetch_single");
 
 				$form_data = array(
 					'id'		=>	$this->input->post('user_id')
@@ -114,12 +116,9 @@ class users_api extends CI_Controller
 
 			}
 
-
-
-
 			if($data_action == "fetch_all")
 			{
-				$api_url = "http://localhost/gps-tracker-backend/api";
+				$api_url = site_url("api");
 
 				$client = curl_init($api_url);
 
@@ -133,8 +132,7 @@ class users_api extends CI_Controller
 
 				$output = '';
 
-				if(count($result) > 0)
-				{
+				
 					foreach($result as $row)
 					{
 						$output .= '
@@ -148,18 +146,19 @@ class users_api extends CI_Controller
 
 						';
 					}
-				}
-				else
-				{
-					$output .= '
-					<tr>
-						<td colspan="4" align="center">No Data Found</td>
-					</tr>
-					';
-				}
+				
+				
 
 				echo $output;
 			}
 		}
+	}
+	private function checklogin(){
+		if(!isset($_SESSION['logged_in'])){
+			$this->session->set_flashdata('message_error', 'กรุณาเข้าสู่ระบบ');
+			redirect('/Login');
+		}
+
+		
 	}
 }

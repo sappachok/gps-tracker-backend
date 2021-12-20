@@ -34,7 +34,7 @@ class Api extends CI_Controller {
 				'fname'	=>	$this->input->post('fname'),
 				'lname'		=>	$this->input->post('lname'),
 				'email'		=>	$this->input->post('email'),
-				'telno'	=>	$this->input->post('pwd'),
+				'telno'	=>	$this->input->post('telno'),
 				'pwd'		=>	$this->input->post('pwd'),
 				'role'		=>	$this->input->post('role'),
 			);
@@ -54,7 +54,7 @@ class Api extends CI_Controller {
 				'email_error'		=>	form_error('email'),
 				'telno_error'		=>	form_error('telno'),
 				'pwd_error'		=>	form_error('pwd'),
-				
+				'role_error'		=>	form_error('role'),
 			);
 		}
 		echo json_encode($array);
@@ -72,6 +72,7 @@ class Api extends CI_Controller {
 				$output['lname'] = $row['lname'];
 				$output['email'] = $row['email'];
 				$output['telno'] = $row['telno'];
+				$output['pwd'] = $row['pwd'];
 			}
 			echo json_encode($output);
 		}
@@ -83,14 +84,15 @@ class Api extends CI_Controller {
 		$this->form_validation->set_rules('lname', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', );
 		$this->form_validation->set_rules('telno', 'Telephone Number', );
-		
+		$this->form_validation->set_rules('pwd', 'Password', );
 		if($this->form_validation->run())
 		{	
 			$data = array(
 				'fname'		=>	$this->input->post('fname'),
 				'lname'			=>	$this->input->post('lname'),
 				'email'			=>	$this->input->post('email'),
-				'telno'			=>	$this->input->post('telno')
+				'telno'			=>	$this->input->post('telno'),
+				'pwd'			=>	$this->input->post('pwd')
 			);
 
 			$this->api_model->update_api($this->input->post('id'), $data);
@@ -106,7 +108,8 @@ class Api extends CI_Controller {
 				'fname_error'	=>	form_error('fname'),
 				'lname_error'	=>	form_error('lname'),
 				'email_error'	=>	form_error('email'),
-				'telno_error'	=>	form_error('telno')
+				'telno_error'	=>	form_error('telno'),
+				'pwd_error'	=>	form_error('pwd')
 			);
 		}
 		echo json_encode($array);
