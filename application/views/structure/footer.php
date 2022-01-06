@@ -22,7 +22,6 @@
 <script src="<?php echo base_url(); ?>js/Lightweight-Chart/jquery.chart.js"></script>
 
 <!-- Custom Js -->
-<script src="<?php echo base_url(); ?>js/custom-scripts.js"></script>
 <script src="<?php echo base_url(); ?>js/dataTables/jquery.dataTables.js"></script>
 <script src="<?php echo base_url(); ?>js/dataTables/dataTables.bootstrap.js"></script>
 <script>

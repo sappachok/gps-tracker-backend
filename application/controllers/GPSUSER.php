@@ -9,11 +9,9 @@ class GPSUSER extends CI_Controller
 		$data_top = array('activebar' => 'พิกัดผู้ใช้งาน Google map');
 
 		$this->load->helper('url');
-		$this->load->view('structure/top');
-		$this->load->view('structure/nav-top');
-		$this->load->view('structure/nav-side', $data_top);
-		$this->load->view('GPSUSER', $data_top);
-		$this->load->view('structure/footer');
+	
+		$this->load->view('GPSUSER');
+	
 
 	}
 }

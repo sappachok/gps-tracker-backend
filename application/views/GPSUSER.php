@@ -1,97 +1,118 @@
-<div id="page-wrapper">
-<html lang="en">
+<!DOCTYPE html >
+  <head>
+    
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    
+    <title>gps tracker</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+<html>
+  <body>
+ 
+    <div id="map"></div>
+
+    <script>
+      var bb = [] ;
+        $.get("http://localhost/maps/get_location.php", function(response) {
+          console.log("get location");
+          console.log(response);
+          console.log(response[0].lat);
+          console.log(response[0].lng);
+          aa = new google.maps.LatLng(response[0].lat,response[0].lng);
+          aa1 = new google.maps.LatLng(response[1].lat,response[1].lng);
+
+          
+
+          $.each(response, function(i,d) {
+          console.log(d.time);
+          console.log(d.lat);
+          console.log(d.lng);
+    
+          bb[i] = new google.maps.LatLng(parseFloat(d.lat), parseFloat(d.lng));
+
+          });
+          console.log(bb);
+          
+            
+   
+// your script
+        });
+
+
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(8.461170, 99.858925),
+            zoom: 15
+          });
+          
+          var infoWindow = new google.maps.InfoWindow;
+            downloadUrl('http://localhost/maps/xml.php', function(data) {
+              var xml = data.responseXML;
+              var markers = xml.documentElement.getElementsByTagName('marker');
+              $.each(bb,function(i,d){
+              //Array.prototype.forEach.call(markers, function(markerElem) {
+                //var id = markerElem.getAttribute('id');
+                //var name = markerElem.getAttribute('name');
+                //var address = markerElem.getAttribute('address');
+                //var type = markerElem.getAttribute('type');
+                //var point = new google.maps.LatLng(
+                   // parseFloat(markerElem.getAttribute('lat')),
+                   // parseFloat(markerElem.getAttribute('lng')));
+              //var aa  =new google.maps.LatLng($lat, $lng);
+                
+               
+                
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: d,
+                });
+                
+                //console.log(point);
+                
+              });
+            });
+        }
 
 
 
-  <!-- Bootstrap core CSS -->
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
 
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
 
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO_0P33j5Cu3TcVG1yqGxgDcnNdDrFgLc&callback=initMap"
-    type="text/javascript"></script>
+        request.open('GET', url, true);
+        request.send(null);
+      }
 
-<script language="JavaScript">
-
-function initMap() { 
-	var myOptions = {
-	  zoom: 9,
-	  center: new google.maps.LatLng(15.000682,103.728207),
-	};
-
-	var map = new google.maps.Map(document.getElementById('map_canvas'),
-		myOptions);
-
-
-	var marker = new  google.maps.Marker({
-		map:map,
-		position: new google.maps.LatLng(15.000682,103.728207),
-		draggalbe:true
-
-	});
-
-	var infowindow = new google.maps.InfoWindow({
-		map:map,
-		content:"Hello",
-		position: new google.maps.LatLng(15.000682,103.728207)
-
-	});
-
-	google.maps.event.addListener(map,'click',function(event){
-		infowindow.open(map,marker);
-		infowindow.setContent("LatLng = " + event.latLng);
-		infowindow.setPosition(event.latLng);
-		marker.setPosition(event.latLng);
-
-		$("#lat").val(event.latLng.lat());
-		$("#lng").val(event.latLng.lng());
-
-		
-	});	
-
-}
-
-
-function saveLocation(){
-var location_name  = $("#location_name").val();
-var lat  = $("#lat").val();
-var lng  = $("#lng").val();
-var location_type  = $("#location_type option:selected").val();
-
-$.ajax({
-method:"POST",
-url:"insert.php",
-data:{ location_name:location_name,lat:lat,lng:lng,location_type:location_type   }
-}).done(function(){
-alert("OK");
-});
-
-}
-
-
-
-</script>
-</head>
-<body>
-
-	<div class="">
-
-		<div class="col-8">
-		<div id="map_canvas" style="width:100%;height:100vh"></div>
-		</div>
-
-		<div class="col-4">
-		<div style="margin-top:70px">
-		
-				
-
-		</div>
-		</div>
-
-	</div>
-
-	</body>
-	</html>
-        
-       
-       
-
-</div>
+      function doNothing() {}
+      
+    </script>
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO_0P33j5Cu3TcVG1yqGxgDcnNdDrFgLc&callback=initMap"
+      defer
+    ></script>
+    
+  </body>
+</html>
