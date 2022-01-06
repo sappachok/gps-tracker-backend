@@ -26,7 +26,7 @@ class Login extends CI_Controller {
 			
 			$this->session->set_flashdata('message_code', '202');
 			$this->session->set_flashdata('message_error', 'ยินดีต้อนรับคุณเข้าสู่ระบบ');
-			redirect('/Dashboard');
+			redirect('/users_api');
 		}else{
 			$this->session->set_flashdata('message_code', '503');
 			$this->session->set_flashdata('message_error', 'กรุณาเข้าสู่ระบบใหม่อีกครั้ง');

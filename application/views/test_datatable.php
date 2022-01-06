@@ -1,17 +1,18 @@
 <div id="page-wrapper">
     <div class="header">
         <h1 class="page-header">
-            Tables Page <small>Responsive tables</small>
+           <center> พิกัดผู้ใช้งาน<small>Responsive tables</small></center>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Tables</a></li>
+            <li><a href="Dashboard">Home</a></li>
             <li class="active">Data</li>
         </ol>
 
     </div>
 
-    
+    <div class="text-right">
+        <a href="<?php echo site_url("Newuser_api/index"); ?>"><button type="button" id="add_button" class="btn btn-info">เพิ่มผู้ใช้งาน</button></a>
+    </div>
     <span id="success_message"></span>
     <div id="page-inner">
 
@@ -20,13 +21,13 @@
                 <!-- Advanced Tables -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        พิกัดผู้ใช้งาน
+                        บัญชีผู้ใช้งาน
                     </div>
                     <div class="panel-body">
 
                     <?php
         include('connection.php');  
-        $sql = "SELECT u.id,u.fname,u.lname,u.email,u.telno,u.role,t.time,t.date,t.lat,t.lon FROM users as u INNER JOIN location as t ON u.id = t.users_id; " or die("Error:" . mysqli_error()); 
+        $sql = "SELECT u.id,u.fname,u.lname,u.email,u.telno,u.role,t.time,t.date,t.lat,t.lng FROM users as u INNER JOIN location as t ON u.id = t.users_id; " or die("Error:" . mysqli_error()); 
         $result = $con->query($sql);
         $arr_uers = [];
         if ($result->num_rows > 0){
@@ -59,7 +60,7 @@
                         <td><?php echo $user["time"]?></td>
                         <td><?php echo $user["date"]?></td>
                         <td><?php echo $user["lat"]?></td>
-                        <td><?php echo $user["lon"]?></td>
+                        <td><?php echo $user["lng"]?></td>
                     </tr>
                 <?php } ?>
             <?php } ?>

@@ -7,8 +7,7 @@ class Users_api extends CI_Controller
 	function index()
 	{
 		$data_top = array('activebar' => 'บัญชีผู้ใช้งาน');
-		$this->checklogin();
-		
+
 		$this->load->helper('url');
 		$this->load->view('structure/top');
 		$this->load->view('structure/nav-top');
@@ -132,7 +131,8 @@ class Users_api extends CI_Controller
 
 				$output = '';
 
-				
+				if(count($result) > 0)
+				{
 					foreach($result as $row)
 					{
 						$output .= '
@@ -146,19 +146,18 @@ class Users_api extends CI_Controller
 
 						';
 					}
-				
-				
+				}
+				else
+				{
+					$output .= '
+					<tr>
+						<td colspan="4" align="center">No Data Found</td>
+					</tr>
+					';
+				}
 
 				echo $output;
 			}
 		}
-	}
-	private function checklogin(){
-		if(!isset($_SESSION['logged_in'])){
-			$this->session->set_flashdata('message_error', 'กรุณาเข้าสู่ระบบ');
-			redirect('/Login');
-		}
-
-		
 	}
 }
